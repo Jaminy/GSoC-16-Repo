@@ -1,0 +1,71 @@
+April 23rd to May 23rd
+
+The period of introducing ourselves to the Debian community. I have updated my debian wiki page to introduce more about myself to the Debian community.
+
+https://wiki.debian.org/SummerOfCode2016/StudentApplications/Jaminy
+
+There was a webRTC session of MiniDebconf through Jitsi on 3oth April to know more about the Debian resources.
+
+During this period  I have updated my PC with the Debian latest version, Jessie and got practised with the new platform.I have also learnt some basic theories on my project such as VoIP and IMAP. I was assigned by my mentor Daniel Pocock  to work on telepathy reSIProcate.
+
+Steps to install reSIProcate
+System used
+
+Debian GNU/Linux 8.3 (jessie)
+Ubuntu 14.04.4 LTS (trusty)
+Telepathy-Qt
+
+First you have to configure the telepathy-qt library properly to be able to install reSIProcate. It's important to notice that you shouldn't install telepathy-qt from apt-get because in this way it wont have the telepathy-qt4-service shared library.
+
+$ mkdir ~/telepathy-qt-stuff
+$ cd ~/telepathy-qt-stuff
+$ git clone https://github.com/dpocock/telepathy-qt-debian
+$ cd telepathy-qt-debian
+$ git checkout jessie-build-all-shared
+$ cd ..
+Then you should download the tar http://http.debian.net/debian/pool/main/t/telepathy-qt/telepathy-qt_0.9.6.1.orig.tar.gz in the telepathy-qt-stuff folder and continue:
+
+$ tar xzf telepathy-qt_0.9.6.1.orig.tar.gz
+$ cd telepathy-qt_0.9.6.1
+$ [ -d debian ] && echo "warning: debian/ already exists!"
+$ cp -r ../telepathy-qt-debian/debian .
+$ dpkg-buildpackage -rfakeroot -i.* -j13 -us -uc
+$ cd ..
+$ ls *.deb
+Now you should see a list of libtelepathy-qt* and telepathy-qt* .deb packages. You just have to install a few more packages:
+
+$ dpkg -i libtelepathy-qt4-2_0.9.6.1-2_amd64.deb libtelepathy-qt4-dev_0.9.6.1-2_amd64.deb libtelepathy-qt4-farstream2_0.9.6.1-2_amd64.deb
+After that you have the necessary packages to install reSIProcate.
+
+$ dpkg -l | grep telepathy-qt
+Should return you something like this:
+
+ii
+libtelepathy-qt4-2:amd64
+0.9.6.1-2
+amd64
+Telepathy framework - Qt 4 library
+ii
+libtelepathy-qt4-dev
+0.9.6.1-2
+amd64
+Qt 4 Telepathy library (headers and static library)
+ii
+libtelepathy-qt4-farstream2:amd64
+0.9.6.1-2
+amd64
+Telepathy/Farsight integration - Qt 4 library
+reSIProcate
+
+After installing telepathy-qt properly you would be able to configure reSIProcate.
+
+Make sure you have added backports to your /etc/apt/sources.list file
+
+$ git clone https://github.com/resiprocate/resiprocate
+$ cd resiprocate
+$ apt-get install libpq-dev dh-autoreconf
+$ apt-get build-dep resiprocate
+$ apt-get install -t jessie-backports libradcli-dev
+$ ./build/debian.sh
+$ make
+And then you are done!
