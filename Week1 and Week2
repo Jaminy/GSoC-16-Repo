@@ -1,0 +1,14 @@
+After introducing ourselves to the community, we start contributing to the open and free source software. Since this is the first week,  I have went through theories which would help me in coding. Before coding it is always safer to refer to theories so that we don't need to spare time in debugging. I would like to share some of the interesting theories I have learnt in Real Time Communication(RTC).
+
+Extensible Messaging and Presence Protocol (XMPP) is an open XML technology for real-time communication, which powers a wide range of applications including instant messaging, presence and collaboration.
+
+
+
+The following were my week 1 and week 2 plans:
+
+Getting familiar with Python and coding for connecting to an email account (using IMAP) and examines every message in every folder.
+Writing a basic Python script to look at the "To", "From" and "CC" headers of every email message in the folder. Identifying all the names and email addresses and writing them in a CSV file.
+Scanning the body of each message looking for phone numbers.(for messages in plain text format)
+Cleaning up the phone numbers and write them in international format and putting those in the CSV file too.
+(Telify recognizes phone numbers on web pages or in email messages and converts them into clickable links. This works with many CTI applications, SIP clients, Skype, Netmeeting, snom phones, the AGFEO TK-Suite client, SerVonic IXI-PCS and others. In general, all telephony software, devices or interfaces which can be controlled by using a URL, will most likely enable you to call a phone number directly from your browser or email client.
+Internet Message Access Protocol (IMAP) specifies how to communicate with an email provider’s server to retrieve emails sent to your email address.
